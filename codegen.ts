@@ -7,12 +7,13 @@ const config: CodegenConfig = {
     "./src/__generated__/": {
       preset: "client",
       plugins: [],
+
       presetConfig: {
         gqlTagName: "gql",
       },
     },
   },
-  // ignoreNoDocuments: true,
+  ignoreNoDocuments: true,
 };
 
 export default config;

@@ -24,3 +24,17 @@ a {
     background: black;
   }
 }
+
+.center-form {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  gap: 10px;
+}

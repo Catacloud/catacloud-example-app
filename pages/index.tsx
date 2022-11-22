@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useAuth } from "react-oidc-context";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Home() {
   const auth = useAuth();
@@ -14,7 +15,6 @@ export default function Home() {
 
   function handleLogin() {
     try {
-      // auth.signinPopup();
       auth.signinRedirect();
     } catch (error) {
       console.error(error);
@@ -29,8 +29,6 @@ export default function Home() {
     }
   }
 
-  console.log(auth.user);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -43,6 +41,7 @@ export default function Home() {
         {auth.isAuthenticated ? (
           <div>
             <h5 className={styles.title}>Welcome {auth.user?.profile.name}</h5>
+            <Link href={"/voucher"}>Send Faktura</Link>
             <button onClick={handleLogout}>logout</button>
           </div>
         ) : (
