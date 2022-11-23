@@ -61,7 +61,7 @@ export default function Voucher() {
   };
 
   useEffect(() => {
-    if (!auth.isAuthenticated && !auth.isLoading) {
+    if (!auth.isLoading) {
       auth.signinSilent();
     }
   }, [auth]);
