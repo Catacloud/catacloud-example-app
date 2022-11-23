@@ -37,7 +37,6 @@ export default function Home() {
       <main className={styles.main}>
         {auth.isAuthenticated ? (
           <div>
-            <h5 className={styles.title}>Your company is</h5>
             <h5 className={styles.title}>
               You are login as {auth.user?.profile.name}
             </h5>
