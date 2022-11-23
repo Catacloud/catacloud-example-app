@@ -8,7 +8,6 @@ import {
 import { FormEvent, useState } from "react";
 import { TextInput, Button } from "@mantine/core";
 import Link from "next/link";
-import { useToken } from "../hooks/useToken";
 import { useEffect } from "react";
 import { useAuth } from "react-oidc-context";
 
@@ -44,7 +43,6 @@ const defaultValues: VoucherAdvancedInput = {
 
 export default function Voucher() {
   const [state, setState] = useState<VoucherAdvancedInput>(defaultValues);
-  const token = useToken();
   const auth = useAuth();
 
   const [createVoucher, { data, loading, error }] = useMutation<
@@ -66,7 +64,7 @@ export default function Voucher() {
       auth.signinSilent();
     }
   }, [auth]);
-
+  console.log(auth);
   return (
     <div className="center-form">
       {data ? (
@@ -137,7 +135,8 @@ export default function Voucher() {
               }}
             />
             <Button type="submit">
-              Create draft for {token?.profile?.company?.[0].name}
+              Create draft for
+              {/* {auth?.profile?.company?.[0].name} */}
             </Button>
             <Link href="https://app.catacloud.com/accounting/inbox">
               <Button color="cyan" style={{ width: "100%" }}>
