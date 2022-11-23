@@ -57,7 +57,6 @@ export default function Voucher() {
       },
     });
   };
-  console.log(token);
 
   return (
     <div className="center-form">
