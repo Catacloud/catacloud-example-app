@@ -61,9 +61,12 @@ export default function Voucher() {
   };
 
   useEffect(() => {
-    if (!auth.isLoading) {
-      auth.signinSilent();
-    }
+    const timer = setTimeout(() => {
+      if (!auth.isLoading) {
+        auth.signinSilent();
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
   }, [auth]);
 
   const profile = auth.user?.profile as OIDCUserProfile;
