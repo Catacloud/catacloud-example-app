@@ -9,6 +9,8 @@ import { FormEvent, useState } from "react";
 import { TextInput, Button } from "@mantine/core";
 import Link from "next/link";
 import { useToken } from "../hooks/useToken";
+import { useEffect } from "react";
+import { useAuth } from "react-oidc-context";
 
 const UPDATE_ADVANCED_INVOICE = gql`
   mutation updateAdvancedVoucher($input: VoucherAdvancedInput!) {
@@ -43,6 +45,7 @@ const defaultValues: VoucherAdvancedInput = {
 export default function Voucher() {
   const [state, setState] = useState<VoucherAdvancedInput>(defaultValues);
   const token = useToken();
+  const auth = useAuth();
 
   const [createVoucher, { data, loading, error }] = useMutation<
     Pick<VoucherType, "id">,
@@ -57,6 +60,12 @@ export default function Voucher() {
       },
     });
   };
+
+  useEffect(() => {
+    if (!auth.isAuthenticated && !auth.isLoading) {
+      auth.signinSilent();
+    }
+  }, [auth]);
 
   return (
     <div className="center-form">

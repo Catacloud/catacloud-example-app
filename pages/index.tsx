@@ -6,17 +6,10 @@ import Link from "next/link";
 import { useToken } from "../hooks/useToken";
 import { Button } from "@mantine/core";
 import LoginButton from "../components/LoginButton/LoginButton";
-import { useEffect } from "react";
 
 export default function Home() {
   const auth = useAuth();
   const token = useToken();
-
-  useEffect(() => {
-    if (!auth.isAuthenticated && !auth.isLoading) {
-      auth.signinSilent();
-    }
-  }, [auth]);
 
   if (auth.isLoading) {
     return (
