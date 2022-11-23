@@ -10,8 +10,7 @@ import {
 } from "@apollo/client";
 import Head from "next/head";
 import { setContext } from "@apollo/client/link/context";
-import { WebStorageStateStore } from "oidc-client-ts";
-import { getToken } from "../utils/getToken";
+import { getToken } from "../token/getToken";
 
 const httpLink = createHttpLink({
   uri: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/graphql`,

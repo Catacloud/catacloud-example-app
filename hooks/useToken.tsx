@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { getToken } from "../utils/getToken";
+import { getToken } from "../token/getToken";
+import { TokenDecoded } from "../token/types";
 
 export const useToken = () => {
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState<TokenDecoded | null>(null);
 
   useEffect(() => {
     console.log("ggg");

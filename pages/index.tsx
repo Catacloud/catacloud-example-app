@@ -2,18 +2,21 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useAuth } from "react-oidc-context";
-import Router, { useRouter } from "next/router";
 import Link from "next/link";
 import { useToken } from "../hooks/useToken";
-import { TextInput, Button } from "@mantine/core";
+import { Button } from "@mantine/core";
+import LoginButton from "../components/LoginButton/LoginButton";
 
 export default function Home() {
   const auth = useAuth();
   const token = useToken();
-  console.log(token);
 
   if (auth.isLoading) {
-    return <div>Loading..</div>;
+    return (
+      <main className={styles.main}>
+        <div>Loading...</div>
+      </main>
+    );
   }
 
   function handleLogin() {
@@ -32,6 +35,8 @@ export default function Home() {
     }
   }
 
+  console.log(auth, token);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -43,37 +48,21 @@ export default function Home() {
       <main className={styles.main}>
         {auth.isAuthenticated || token ? (
           <div>
-            <h5 className={styles.title}>Welcome {auth.user?.profile.name}</h5>
+            <h5 className={styles.title}>
+              Your company is {token?.profile?.company?.[0].name}
+            </h5>
+            <h5 className={styles.title}>
+              You are login as {auth.user?.profile.name}
+            </h5>
             <Link href={"/voucher"}>Send Faktura</Link>
             <Button onClick={handleLogout}>logout</Button>
           </div>
         ) : (
           <div>
-            <button className="catacloud-login" onClick={handleLogin}>
-              <Image
-                src="/Catacloud-app-icon.png"
-                alt="logo"
-                height={100}
-                width={100}
-              />
-              <span style={{ color: "1275eE" }}>Sign in with Catacloud</span>
-            </button>
+            <LoginButton />
           </div>
         )}
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   );
 }

@@ -7,6 +7,8 @@ import {
 } from "../src/__generated__/graphql";
 import { FormEvent, useState } from "react";
 import { TextInput, Button } from "@mantine/core";
+import Link from "next/link";
+import { useToken } from "../hooks/useToken";
 
 const UPDATE_ADVANCED_INVOICE = gql`
   mutation updateAdvancedVoucher($input: VoucherAdvancedInput!) {
@@ -40,6 +42,7 @@ const defaultValues: VoucherAdvancedInput = {
 
 export default function Voucher() {
   const [state, setState] = useState<VoucherAdvancedInput>(defaultValues);
+  const token = useToken();
 
   const [createVoucher, { data, loading, error }] = useMutation<
     Pick<VoucherType, "id">,
@@ -61,6 +64,9 @@ export default function Voucher() {
         <h1 className="center-form">
           <h1>Success</h1>
           <h2>😎✌️👌✌️😎</h2>
+          <Link href="https://app.catacloud.com/accounting/inbox">
+            See voucher
+          </Link>
         </h1>
       ) : (
         <>
@@ -121,7 +127,14 @@ export default function Voucher() {
                 });
               }}
             />
-            <Button type="submit">Send</Button>
+            <Button type="submit">
+              Create draft for {token?.profile?.company?.[0].name}
+            </Button>
+            <Link href="https://app.catacloud.com/accounting/inbox">
+              <Button color="cyan" style={{ width: "100%" }}>
+                See all voucher
+              </Button>
+            </Link>
           </form>
         </>
       )}

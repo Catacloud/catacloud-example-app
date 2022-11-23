@@ -1,5 +1,7 @@
+import { TokenDecoded } from "./types";
+
 export const getToken = () => {
-  let token;
+  let token: TokenDecoded | null;
   let key = `oidc.user:${process.env.NEXT_PUBLIC_AUTHORITY}:catacloud-web`;
   token = JSON.parse(String(window.localStorage.getItem(key)));
   if (token) {
