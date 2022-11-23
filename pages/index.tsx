@@ -4,9 +4,12 @@ import styles from "../styles/Home.module.css";
 import { useAuth } from "react-oidc-context";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useToken } from "../hooks/useToken";
 
 export default function Home() {
   const auth = useAuth();
+  const token = useToken();
+  console.log(token);
 
   if (auth.isLoading) {
     return <div>Loading..</div>;
@@ -37,7 +40,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        {auth.isAuthenticated ? (
+        {auth.isAuthenticated || token ? (
           <div>
             <h5 className={styles.title}>Welcome {auth.user?.profile.name}</h5>
             <Link href={"/voucher"}>Send Faktura</Link>
