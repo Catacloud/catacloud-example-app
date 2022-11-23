@@ -70,7 +70,6 @@ export default function Voucher() {
   }, [auth]);
 
   const profile = auth.user?.profile as OIDCUserProfile;
-  console.log(profile);
 
   return (
     <div className="center-form">
