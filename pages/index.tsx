@@ -27,8 +27,6 @@ export default function Home() {
     }
   }
 
-  console.log(auth, token);
-
   return (
     <div className={styles.container}>
       <Head>
