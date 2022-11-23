@@ -19,14 +19,6 @@ export default function Home() {
     );
   }
 
-  function handleLogin() {
-    try {
-      auth.signinRedirect();
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   function handleLogout() {
     try {
       auth.signoutRedirect();

@@ -6,9 +6,7 @@ export const useToken = () => {
   const [token, setToken] = useState<TokenDecoded | null>(null);
 
   useEffect(() => {
-    console.log("ggg");
     const listenStorageChange = () => {
-      console.log("ggg");
       const token = getToken();
       setToken(token);
     };
