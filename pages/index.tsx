@@ -3,13 +3,11 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useAuth } from "react-oidc-context";
 import Link from "next/link";
-import { useToken } from "../hooks/useToken";
 import { Button } from "@mantine/core";
 import LoginButton from "../components/LoginButton/LoginButton";
 
 export default function Home() {
   const auth = useAuth();
-  const token = useToken();
 
   if (auth.isLoading) {
     return (
@@ -26,6 +24,7 @@ export default function Home() {
       console.error(error);
     }
   }
+  console.log(auth.user);
 
   return (
     <div className={styles.container}>
@@ -36,11 +35,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        {auth.isAuthenticated || token ? (
+        {auth.isAuthenticated ? (
           <div>
-            <h5 className={styles.title}>
-              Your company is {token?.profile?.company?.[0].name}
-            </h5>
+            <h5 className={styles.title}>Your company is</h5>
             <h5 className={styles.title}>
               You are login as {auth.user?.profile.name}
             </h5>

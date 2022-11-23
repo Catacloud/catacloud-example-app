@@ -1,3 +1,19 @@
+import { UserProfile } from "oidc-client-ts";
+
+export interface OIDCUserProfile extends UserProfile {
+  company?: Company[];
+  email?: string;
+  email_verified?: boolean;
+  given_name: string;
+  family_name?: string;
+  name: string;
+  type: UserType;
+  picture?: string;
+  locale: SiteLanguage;
+  hash: string;
+  permissions: string[];
+}
+
 export interface TokenDecoded {
   profile: TokenUser;
   access_token: string;

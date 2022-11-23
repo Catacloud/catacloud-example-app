@@ -41,6 +41,7 @@ const oidcConfig: AuthProviderProps = {
   response_type: "code",
   scope: "openid profile email system voucher:write",
   loadUserInfo: true,
+  monitorSession: true,
 };
 
 export default function App({ Component, pageProps }: AppProps) {

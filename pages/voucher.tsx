@@ -10,6 +10,7 @@ import { TextInput, Button } from "@mantine/core";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useAuth } from "react-oidc-context";
+import { OIDCUserProfile } from "../token/types";
 
 const UPDATE_ADVANCED_INVOICE = gql`
   mutation updateAdvancedVoucher($input: VoucherAdvancedInput!) {
@@ -64,7 +65,9 @@ export default function Voucher() {
       auth.signinSilent();
     }
   }, [auth]);
-  console.log(auth);
+
+  const profile = auth.user?.profile as OIDCUserProfile;
+
   return (
     <div className="center-form">
       {data ? (
@@ -135,8 +138,7 @@ export default function Voucher() {
               }}
             />
             <Button type="submit">
-              Create draft for
-              {/* {auth?.profile?.company?.[0].name} */}
+              Create draft for {profile?.company?.[0]?.name}
             </Button>
             <Link href="https://app.catacloud.com/accounting/inbox">
               <Button color="cyan" style={{ width: "100%" }}>
