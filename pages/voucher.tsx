@@ -68,6 +68,8 @@ export default function Voucher() {
 
   const profile = auth.user?.profile as OIDCUserProfile;
 
+  console.log(profile);
+
   return (
     <div className="center-form">
       {data ? (
