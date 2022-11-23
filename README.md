@@ -10,7 +10,8 @@
    3. ![picture 2](images/23e58d8844488fbfc4cffadaed15b68728948d9309aae637fc317b647c8ef968.png)
    4. Create a .env and copy the content of .env.example
    5. Copy App ID and App Secret into env ![picture 3](images/015d237976d08caa43222fcfcde98156bd70ca26813e6e78412b9b7e23c02566.png)
-3. Test if your app exists in catacloud.com
+3. Get token from app.catacloud.com see `utils/getToken.ts`
+4. Test if your app exists in catacloud.com
    1. Go to the [client](https://app.catacloud.com/) you selected in 2. ii.
    2. ![picture 4](images/ef8cdb27f89e7864e577106f9e616061e15bc4ec59240d4e73188f5097e11b2c.png)
    3. Click on your app and install it

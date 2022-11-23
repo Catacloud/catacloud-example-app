@@ -11,6 +11,7 @@ import {
 import Head from "next/head";
 import { setContext } from "@apollo/client/link/context";
 import { WebStorageStateStore } from "oidc-client-ts";
+import { getToken } from "../utils/getToken";
 
 const httpLink = createHttpLink({
   uri: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/graphql`,
@@ -18,8 +19,7 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   // get token from local storage
-  const key = `oidc.user:${process.env.NEXT_PUBLIC_AUTHORITY}:${process.env.NEXT_PUBLIC_CLIENT_ID}`;
-  let token = JSON.parse(String(window.sessionStorage.getItem(key)));
+  const token = getToken();
 
   return {
     headers: {

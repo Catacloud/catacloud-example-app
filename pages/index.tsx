@@ -2,9 +2,10 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useAuth } from "react-oidc-context";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Link from "next/link";
 import { useToken } from "../hooks/useToken";
+import { TextInput, Button } from "@mantine/core";
 
 export default function Home() {
   const auth = useAuth();
@@ -44,10 +45,20 @@ export default function Home() {
           <div>
             <h5 className={styles.title}>Welcome {auth.user?.profile.name}</h5>
             <Link href={"/voucher"}>Send Faktura</Link>
-            <button onClick={handleLogout}>logout</button>
+            <Button onClick={handleLogout}>logout</Button>
           </div>
         ) : (
-          <button onClick={handleLogin}>login</button>
+          <div>
+            <button className="catacloud-login" onClick={handleLogin}>
+              <Image
+                src="/Catacloud-app-icon.png"
+                alt="logo"
+                height={100}
+                width={100}
+              />
+              <span style={{ color: "1275eE" }}>Sign in with Catacloud</span>
+            </button>
+          </div>
         )}
       </main>
 
