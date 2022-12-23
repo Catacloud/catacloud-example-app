@@ -15,4 +15,4 @@ See [web page](https://catacloud-example-app.vercel.app)
    2. ![picture 4](images/ef8cdb27f89e7864e577106f9e616061e15bc4ec59240d4e73188f5097e11b2c.png)
    3. Click on your app and install it
    4. Login out and in again to see the app
-4. To get token from app.catacloud.com see `utils/getToken.ts`
+4. To get token from app.catacloud.com see `token/getToken.ts`
